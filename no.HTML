@@ -1,0 +1,32 @@
+<label for="input">Enter a character:</label>
+<input type="text" id="input">
+<button onclick="addChar()">Add</button>
+<button onclick="deleteChar()" id="deleteButton" disabled>Delete</button>
+<p id="output"></p>
+
+<script>
+  var str = "";
+  var output = document.getElementById("output");
+  var input = document.getElementById("input");
+  var deleteButton = document.getElementById("deleteButton");
+
+  function addChar() {
+    if (input.value.length > 0) {
+      var index = input.selectionStart;
+      str = str.slice(0, index) + input.value + str.slice(index);
+      output.innerHTML = str;
+      deleteButton.disabled = false;
+    }
+  }
+
+  function deleteChar() {
+    var index = input.selectionStart;
+    if (str.length > 0 && index > 0) {
+      str = str.slice(0, index - 1) + str.slice(index);
+      output.innerHTML = str;
+    }
+    if (str.length == 0) {
+      deleteButton.disabled = true;
+    }
+  }
+</script>
